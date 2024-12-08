@@ -52,7 +52,7 @@
         }
 #endif
 
-#if  NET5_0
+#if  NET8_0
         public static ImageFormat GetImageFormat(ReadOnlySpan<byte> bytes)
         {
             ReadOnlySpan<byte> bmp = stackalloc byte[] { (byte)'B', (byte)'M' };            // BMP

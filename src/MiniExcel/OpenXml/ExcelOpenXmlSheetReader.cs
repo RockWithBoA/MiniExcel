@@ -67,7 +67,7 @@ namespace MiniExcelLibs.OpenXml
                 var s = _sheetRecords[0];
 #if NET45
                 sheetEntry = sheets.Single(w => w.FullName == $"xl/{s.Path}" || w.FullName == $"/xl/{s.Path}");
-#elif NETSTANDARD2_0_OR_GREATER
+#elif NET8_0
 
                 // fixed by argo@live.ca 
                 // s.Path = "/xl/sheets/sheet1.xml" s.FullName = "/xl/sheets/sheet1.xml"

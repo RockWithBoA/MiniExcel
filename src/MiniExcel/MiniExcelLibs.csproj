@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+		<TargetFramework>net8.0</TargetFramework>
 		<Version>1.31.3</Version>
 	</PropertyGroup>
 	<PropertyGroup>
@@ -33,6 +33,14 @@ Todo : https://github.com/mini-software/MiniExcel/projects/1?fullscreen=true</De
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
+	  <IsAotCompatible>True</IsAotCompatible>
+	  <IsTrimmable>False</IsTrimmable>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
+	  <IsAotCompatible>True</IsAotCompatible>
+	  <IsTrimmable>False</IsTrimmable>
 	</PropertyGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net461'">
 		<Reference Include="System.IO.Compression" />

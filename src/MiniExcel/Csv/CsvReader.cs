@@ -11,6 +11,36 @@ using System.Threading.Tasks;
 
 namespace MiniExcelLibs.Csv
 {
+    internal static class CsvReaderExtension
+    {
+        //To support cell surrounded by double quotes with line break in it.
+        public static string ReadCsvEntry(this StreamReader streamReader)
+        {
+            string entry = streamReader.ReadLine();
+            if (entry == null)
+            {
+                return entry;
+            }
+
+            while (entry.GetNumberOf("\"").IsOdd())
+            {
+                entry += Environment.NewLine + streamReader.ReadLine();
+            }
+
+            return entry;
+        }
+
+        public static int GetNumberOf(this string s, string searchString)
+        {
+            return s.Count(c => c == '\"');
+        }
+
+        public static Boolean IsOdd(this int i)
+        {
+            return i % 2 != 0;
+        }
+    }
+
     internal class CsvReader : IExcelReader 
     {
         private Stream _stream;
@@ -32,7 +62,7 @@ namespace MiniExcelLibs.Csv
                 string[] read;
                 var firstRow = true;
                 Dictionary<int, string> headRows = new Dictionary<int, string>();
-                while ((row = reader.ReadLine()) != null)
+                while ((row = reader.ReadCsvEntry()) != null)
                 {
                     read = Split(row);
 
